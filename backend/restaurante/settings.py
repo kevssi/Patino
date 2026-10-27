@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-tixiea%y*-w+xy1%hmnr)=n)0ns71-)sp223z4ip9@(-w#9f)j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', "localhost"]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver']
 
 
 # Application definition
@@ -151,3 +151,18 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
+
+# SWAGGER CONFIGURATION (Permite autorizar con Token Bearer en Swagger UI)
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description': 'JWT Authorization header using the Bearer scheme. Example: "Bearer {token}"'
+        }
+    },
+    'USE_SESSION_AUTH': True,
+    'JSON_EDITOR': True,
+}
+

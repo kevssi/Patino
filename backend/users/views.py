@@ -24,10 +24,11 @@ class UserApiViewSet(ModelViewSet):
     def partial_update(self, request, *args, **kwargs):
         if hasattr(request.data, '_mutable') and not request.data._mutable:
             request.data._mutable = True
-        if "password" in request.data:
+        user = self.get_object()
+        if "password" in request.data and request.data["password"]:
             request.data["password"] = make_password(request.data["password"])
         else:
-            request.data["password"] = request.user.password
+            request.data["password"] = user.password
         return super().partial_update(request, *args, **kwargs)
 
 

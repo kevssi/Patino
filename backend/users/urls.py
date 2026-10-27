@@ -14,7 +14,8 @@ urlpatterns = [
     path('auth/me/', views.UserView.as_view()),
     path('auth/register/',
          views.RegisterUserView.as_view({'post': 'create'}), name='register'),
-    # Aqui pueden utilizar el nombre de auth/token/  o  auth/login/
+    # Rutas para obtencion de Token JWT
     path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('auth/login/', TokenObtainPairView.as_view(), name='token_login'),
     path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
